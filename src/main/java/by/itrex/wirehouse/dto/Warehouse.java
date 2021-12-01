@@ -13,6 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Warehouse {
   private Long id;
+  private String name;
   private Double lat;
   private Double lon;
   private List<Item> items;

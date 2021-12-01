@@ -25,6 +25,12 @@ public class CustomerServiceImpl implements CustomerService {
   public Customer create(Customer customer) {
     Customer persisted = customerRepository.save(customer);
 
+    saveDistancesToWarehouses(persisted);
+    return customer;
+  }
+
+  // ideally make async
+  public void saveDistancesToWarehouses(Customer persisted) {
     List<Warehouse> warehouses = warehouseRepository.getAll();
     warehouses.forEach(warehouse -> distanceRepository.save(
         DistanceUnit.builder()
@@ -37,7 +43,5 @@ public class CustomerServiceImpl implements CustomerService {
                 warehouse.getLon()
             ))
             .build()));
-
-    return customer;
   }
 }

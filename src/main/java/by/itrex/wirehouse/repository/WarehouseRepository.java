@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface WarehouseRepository {
   void save(Warehouse warehouse);
+
   List<Warehouse> getAll();
+
   Warehouse getById(Long id);
 }

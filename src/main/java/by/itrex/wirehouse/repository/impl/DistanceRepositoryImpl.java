@@ -10,16 +10,16 @@ import java.util.List;
 @Repository
 public class DistanceRepositoryImpl implements DistanceRepository {
 
-  private static List<DistanceUnit> distances = new ArrayList<>();
+  private static final List<DistanceUnit> DISTANCES = new ArrayList<>();
 
   @Override
   public void save(DistanceUnit distanceUnit) {
-    distances.add(distanceUnit);
+    DISTANCES.add(distanceUnit);
   }
 
   @Override
   public DistanceUnit getById(Long customerId, Long warehouseId) {
-    return distances.stream()
+    return DISTANCES.stream()
         .filter(distanceUnit ->
             distanceUnit.getCustomerId().equals(customerId)
                 && distanceUnit.getWarehouseId().equals(warehouseId))
@@ -29,6 +29,6 @@ public class DistanceRepositoryImpl implements DistanceRepository {
 
   @Override
   public List<DistanceUnit> getAll() {
-    return distances;
+    return DISTANCES;
   }
 }

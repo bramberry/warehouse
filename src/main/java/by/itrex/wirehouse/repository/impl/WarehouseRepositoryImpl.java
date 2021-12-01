@@ -15,48 +15,53 @@ import java.util.concurrent.atomic.AtomicLong;
 @Repository
 public class WarehouseRepositoryImpl implements WarehouseRepository {
 
-  private static Map<Long, Warehouse> warehouses = new HashMap<>();
-  private AtomicLong warehouseSequence = new AtomicLong();
+  private static final Map<Long, Warehouse> WAREHOUSES = new HashMap<>();
+  private final AtomicLong warehouseSequence = new AtomicLong();
 
   @PostConstruct
   public void init() {
     Long id = warehouseSequence.incrementAndGet();
-    warehouses.put(id, Warehouse.builder()
+    WAREHOUSES.put(id, Warehouse.builder()
         .id(id)
         .lat(53.844521)
         .lon(27.628827)
+        .name("Чижовка Арена")
         .items(List.of(Item.builder().name("Iphone 13").build()))
         .build());
     id = warehouseSequence.incrementAndGet();
-    warehouses.put(id, Warehouse.builder()
+    WAREHOUSES.put(id, Warehouse.builder()
         .id(id)
-        .lat(53.839107)
-        .lon(27.581971)
-        .items(List.of(Item.builder().name("Iphone 12").build(),Item.builder().name("Iphone 13").build()))
+        .lat(53.849489)
+        .lon(27.474956)
+        .name("Малиновка метро")
+        .items(List.of(Item.builder().name("Iphone 12").build(), Item.builder().name("Iphone 13").build()))
         .build());
     id = warehouseSequence.incrementAndGet();
-    warehouses.put(id, Warehouse.builder()
+    WAREHOUSES.put(id, Warehouse.builder()
         .id(id)
         .lat(53.908821)
         .lon(27.434183)
+        .name("Грин на Каменке")
         .items(List.of(Item.builder().name("Samsung A55").build()))
         .build());
     id = warehouseSequence.incrementAndGet();
-    warehouses.put(id, Warehouse.builder()
+    WAREHOUSES.put(id, Warehouse.builder()
         .id(id)
-        .lat(53.965109)
-        .lon(27.537641)
+        .lat(53.935930)
+        .lon(27.481638)
+        .name("Минск-арена")
         .items(List.of(Item.builder().name("Xiaomi Mi 11").build()))
         .build());
     id = warehouseSequence.incrementAndGet();
-    warehouses.put(id, Warehouse.builder()
+    WAREHOUSES.put(id, Warehouse.builder()
         .id(id)
         .lat(53.960544)
         .lon(27.633067)
+        .name("Мак Уручье")
         .items(List.of(Item.builder().name("Xiaomi Mi 10").build()))
         .build());
     id = warehouseSequence.incrementAndGet();
-    warehouses.put(id, Warehouse.builder()
+    WAREHOUSES.put(id, Warehouse.builder()
         .id(id)
         .lat(53.942698)
         .lon(27.682412)
@@ -66,16 +71,16 @@ public class WarehouseRepositoryImpl implements WarehouseRepository {
 
   @Override
   public void save(Warehouse warehouse) {
-    warehouses.put(warehouseSequence.incrementAndGet(), warehouse);
+    WAREHOUSES.put(warehouseSequence.incrementAndGet(), warehouse);
   }
 
   @Override
   public List<Warehouse> getAll() {
-    return new ArrayList<>(warehouses.values());
+    return new ArrayList<>(WAREHOUSES.values());
   }
 
   @Override
   public Warehouse getById(Long id) {
-    return warehouses.get(id);
+    return WAREHOUSES.get(id);
   }
 }

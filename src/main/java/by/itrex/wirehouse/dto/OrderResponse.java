@@ -8,4 +8,5 @@ import lombok.Data;
 public class OrderResponse {
   private String message;
   private Double distance;
+  private Long warehouseId;
 }
