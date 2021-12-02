@@ -5,7 +5,8 @@ public class DistanceCalculator {
   private DistanceCalculator() {
   }
 
-  //https://www.geeksforgeeks.org/program-distance-two-points-earth/
+  // https://www.geeksforgeeks.org/program-distance-two-points-earth/
+  // Can be improved with Maps API, but for test purpose assume that distance = distance between two points on earth
   public static double calculate(double sourceLat, double sourceLon, double destinationLat, double destinationLon) {
     // The math module contains a function
     // named toRadians which converts from
